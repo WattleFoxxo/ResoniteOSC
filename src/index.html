@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resonite OSC Server</title>
+        <link rel="stylesheet" href="dark.css">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .container {
+                flex-grow: 1;
+                padding-bottom: 18px;
+                overflow-y: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Resonite OSC Server</h1> <label>Version 0.0.1</label>
+
+        <h2 id="serverStatus">Status: Stopped.</h2>
+
+        <div style="display: flex;">
+            <button id="serverStart" style="width: 100%;">Start Server</button>
+            <button id="serverStop" style="width: 100%;" disabled>Stop Server</button>
+            <button id="openServerConfig" style="width: 100%; margin-right: 0px;">Server Settings</button>
+        </div>
+
+        <pre class="container"><code id="serverConsole" style="height: 100%; overflow-y: auto;"></code></pre>
+        
+        <dialog id="serverConfigDialog" style="width: 350px;">
+            <h2>Server Settings</h2>
+            
+            <label>OSC Server</label>
+            <div style="display: flex;">
+                <input id="oscServerAddress" placeholder="Address" style="width: 70%;">
+                <input id="oscServerPort" placeholder="Port" style="width: 30%;">
+            </div>
+            
+            <br>
+            
+            <label>OSC Client</label>
+            <div style="display: flex;">
+                <input id="oscClientAddress" placeholder="Address" style="width: 70%;">
+                <input id="oscClientPort" placeholder="Port" style="width: 30%;">
+            </div>
+            
+            <br>
+            
+            <label>Websocket Server</label>
+            <div style="display: flex;">
+                <input id="wsServerAddress" placeholder="Address" style="width: 70%;">
+                <input id="wsServerPort" placeholder="Port" style="width: 30%;">
+            </div>
+            
+            <br>
+            
+            <label>HTTP API Server</label>
+            <div style="display: flex;">
+                <input id="httpServerAddress" placeholder="Address" style="width: 70%;">
+                <input id="httpServerPort" placeholder="Port" style="width: 30%;">
+            </div>
+            
+            <br>
+            
+            <div style="display: flex;">
+                <button id="cancelServerConfig" style="width: 100%;">Cancel</button>
+                <button id="saveServerConfig" style="width: 100%;">Save</button>
+            </div>
+        </dialog>
+
+        <script src="index.js"></script>
+    </body>
+    </html>
