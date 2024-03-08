@@ -1,2 +1,2 @@
 # ResoniteOSC
- Converts VRCOSC to Resonite websockets
+ An API for OSC in Resonite
