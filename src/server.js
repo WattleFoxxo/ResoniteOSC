@@ -12,17 +12,17 @@ class Server {
         console.log("Starting server...");
         this.STATUS(1);
 
-        this.OSC_SERVER_PORT = options.oscServerPort || 9000;
-        this.OSC_SERVER_ADDRESS = options.oscServerAddress || "127.0.0.1";
+        this.OSC_SERVER_PORT = options.config.oscServerPort || 9000;
+        this.OSC_SERVER_ADDRESS = options.config.oscServerAddress || "127.0.0.1";
 
-        this.OSC_CLIENT_PORT = options.oscClientPort || 9001;
-        this.OSC_CLIENT_ADDRESS = options.oscClientAddress || "127.0.0.1";
+        this.OSC_CLIENT_PORT = options.config.oscClientPort || 9001;
+        this.OSC_CLIENT_ADDRESS = options.config.oscClientAddress || "127.0.0.1";
 
-        this.WS_SERVER_PORT = options.wsServerPort || 8090;
-        this.WS_SERVER_ADDRESS = options.wsServerAddress || "127.0.0.1";
+        this.WS_SERVER_PORT = options.config.wsServerPort || 8090;
+        this.WS_SERVER_ADDRESS = options.config.wsServerAddress || "127.0.0.1";
 
-        this.HTTP_SERVER_PORT = options.httpServerPort || 8091;
-        this.HTTP_SERVER_ADDRESS = options.httpServerAddress || "127.0.0.1";
+        this.HTTP_SERVER_PORT = options.config.httpServerPort || 8091;
+        this.HTTP_SERVER_ADDRESS = options.config.httpServerAddress || "127.0.0.1";
 
         this.osc_table = {};
 

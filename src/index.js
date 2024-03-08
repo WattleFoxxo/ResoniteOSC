@@ -1,17 +1,18 @@
 const Server = require("./server");
+const Config = require("./config");
 
 var logger = function(message) {
     var consoleBox = document.getElementById("serverConsole");
     var scroll = consoleBox.scrollHeight - consoleBox.scrollTop === consoleBox.clientHeight;
-
+    
     consoleBox.textContent += message + '\n';
-
+    
     if (scroll) consoleBox.scrollTop = consoleBox.scrollHeight;
-};
+}
 
 function status(i) {
     var serverStatus = document.getElementById("serverStatus");
-
+    
     switch (i) {
         case 0:
             serverStatus.innerText = "Status: Stopped";
@@ -30,32 +31,20 @@ function status(i) {
     }
 }
 
-var serverConfig = {
-    oscServerPort: 9000,
-    oscServerAddress: "127.0.0.1",
-    oscClientPort: 9001,
-    oscClientAddress: "127.0.0.1",
-    wsServerPort: 8090,
-    wsServerAddress: "127.0.0.1",
-    httpServerPort: 8091,
-    httpServerAddress: "127.0.0.1",
-    logger: logger,
-    status: status,
-};
-
 var server = null;
+var serverConfig = Config.loadJSON("./serverConfig.json");
 
-// Server Controls
+// Server Buttons
 var serverStart = document.getElementById("serverStart");
 var serverStop = document.getElementById("serverStop");
 
-// Config Menu
+// Config Menu Buttons
 var serverConfigDialog = document.getElementById("serverConfigDialog");
 var openServerConfigBtn = document.getElementById("openServerConfig");
 var cancelServerConfigBtn = document.getElementById("cancelServerConfig");
 var saveServerConfigBtn = document.getElementById("saveServerConfig");
 
-// Config Feilds
+// Config Menu Inputs
 var oscServerAddress = document.getElementById("oscServerAddress");
 var oscServerPort = document.getElementById("oscServerPort");
 var oscClientAddress = document.getElementById("oscClientAddress");
@@ -70,7 +59,11 @@ serverStart.addEventListener("click", () => {
     openServerConfigBtn.disabled = true;
     serverStop.disabled = true;
 
-    server = new Server(serverConfig);
+    server = new Server({
+        "config": serverConfig,
+        "logger": logger,
+        "status": status
+    });
 });
 
 serverStop.addEventListener("click", () => {
@@ -113,6 +106,8 @@ saveServerConfigBtn.addEventListener("click", () => {
 
     serverConfig.httpServerAddress = httpServerAddress.value;
     serverConfig.httpServerPort = httpServerPort.value;
+
+    Config.saveJSON("./serverConfig.json", serverConfig);
 
     serverConfigDialog.close();
 });

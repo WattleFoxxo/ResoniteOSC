@@ -1,0 +1,10 @@
+{
+  "oscServerPort": "9000",
+  "oscServerAddress": "127.0.0.1",
+  "oscClientPort": "9001",
+  "oscClientAddress": "127.0.0.1",
+  "wsServerPort": "8090",
+  "wsServerAddress": "127.0.0.1",
+  "httpServerPort": "8091",
+  "httpServerAddress": "127.0.0.1"
+}
